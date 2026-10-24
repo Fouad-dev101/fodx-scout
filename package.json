@@ -1,0 +1,17 @@
+{
+  "name": "fodx-scout",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "concurrently -n api,web -c blue,green \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "npm -w apps/api run dev",
+    "dev:web": "npm -w apps/web run dev",
+    "build": "npm -w packages/shared run build && npm -w apps/api run build && npm -w apps/web run build",
+    "migrate": "npm -w apps/api run migrate",
+    "test": "npm -w apps/api run test && npm -w apps/web run test"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1",
+    "typescript": "^5.6.3"
+  }
+}
